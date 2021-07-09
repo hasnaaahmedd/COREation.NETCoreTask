@@ -1,0 +1,91 @@
+﻿@model PaginatedList<COREationTask.Models.Company>
+
+@{
+    ViewData["Title"] = "AllCompanies";
+}
+
+<h1>AllCompanies</h1>
+
+<br />
+
+@using (Html.BeginForm("AllCompanies", "Companies", FormMethod.Get))
+{
+    @Html.TextBox("searchString")
+
+    <input type="submit" value="Search" />
+
+    <br />
+    <br />
+
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Company Name
+            </th>
+            <th>
+                WebSite
+            </th>
+            <th>
+                Address
+            </th>
+
+        </tr>
+    </thead>
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="4">
+                No matching records found
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.companyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.companyWebSite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.companyAddress)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="text-center">
+    <a asp-action="AllCompanies"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="AllCompanies"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
+
+    <br />
+    <br />
+
+    @Html.ActionLink("Add New Company", "Create", "Companies", null, new { @class = "btn btn-success" })

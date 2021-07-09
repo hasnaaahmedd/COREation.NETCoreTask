@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Company>
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
+
+<h1>Companies</h1>
+
+<div class="container m-4">
+    <table id="CompaniesTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Website</th>
+                <th>Address</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.companyName</td>
+                    <td>@item.companyWebSite</td>
+                    <td>@item.companyAddress</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    @Html.ActionLink("Add New Company", "Create", "Companies", null, new { @class = "btn btn-success" })
+
+
+
+</div>
+
+@section Scripts{
+
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/CompaniesTable.js"></script>
+}

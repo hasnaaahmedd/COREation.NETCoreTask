@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Employee> 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css"/>
+
+<h1>Employees</h1>
+
+
+<div class="container m-4">
+    <table id="EmployeesTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+              
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.employeeName</td>
+                    <td>@item.employeeEmail</td>
+                    <td>@item.Company.companyName</td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @*<a href="/student/Add" class="btn btn-success btn-lg">Add New Student</a>*@
+    @Html.ActionLink("Add New Employee", "Create", "Employees", null, new { @class = "btn btn-success" })
+
+
+
+</div>
+
+@section Scripts {
+
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/EmployeesTable.js"></script>
+
+}

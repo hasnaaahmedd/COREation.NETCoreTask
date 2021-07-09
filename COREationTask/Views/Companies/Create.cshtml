@@ -1,0 +1,48 @@
+﻿@model COREationTask.Models.Company
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create new compnay</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="companyName" class="control-label"></label>
+                <input asp-for="companyName" class="form-control" />
+                <span asp-validation-for="companyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="companyWebSite" class="control-label"></label>
+                <input asp-for="companyWebSite" class="form-control" />
+                <span asp-validation-for="companyWebSite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="companyAddress" class="control-label"></label>
+                <input asp-for="companyAddress" class="form-control" />
+                <span asp-validation-for="companyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-success" asp-action="Index">Back to DataTable</a>
+</div>
+
+<br />
+
+<div>
+    <a class="btn btn-success" asp-action="AllCompanie">Back to server-side List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
